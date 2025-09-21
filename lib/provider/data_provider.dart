@@ -63,7 +63,11 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
 
     final tables = await _svc.pickCsvsFromBrowser();
-    if (tables.isEmpty) return;
+    if (tables.isEmpty) {
+      _isLoading = true;
+      notifyListeners();
+      return;
+    }
 
     _isLoading = true;
     notifyListeners();

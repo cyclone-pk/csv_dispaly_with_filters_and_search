@@ -29,7 +29,7 @@ class DataService {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
       type: FileType.custom,
-      allowedExtensions: ['csv', 'tsv', 'psv', 'json', 'ndjson', 'xlsx'],
+      allowedExtensions: ['csv'],
       withData: true,
     );
     if (result == null || result.files.isEmpty) return [];
@@ -43,18 +43,7 @@ class DataService {
       try {
         switch (ext) {
           case 'csv':
-          case 'tsv':
-          case 'psv':
             out.add(_parseDelimitedText(name, utf8.decode(f.bytes!), ext));
-            break;
-          case 'json':
-            out.add(_parseJsonArrayOrAuto(name, utf8.decode(f.bytes!)));
-            break;
-          case 'ndjson':
-            out.add(_parseNdjson(name, utf8.decode(f.bytes!)));
-            break;
-          case 'xlsx':
-            out.addAll(_parseXlsx(name, f.bytes!));
             break;
           default:
             // ignore unsupported silently, or throw if you prefer
@@ -62,7 +51,7 @@ class DataService {
         }
       } catch (e) {
         // You could surface a toast/snackbar at call site if needed.
-        // print('Failed to parse $name: $e');
+        print('Failed to parse $name: $e');
       }
     }
     return out;
