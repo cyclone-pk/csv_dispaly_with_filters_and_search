@@ -1,7 +1,4 @@
 
----
-
-```markdown
 # Design Choices & Thought Process (One Page)
 
 ![img.png](img.png)
