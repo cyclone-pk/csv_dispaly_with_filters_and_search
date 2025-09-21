@@ -4,6 +4,8 @@
 ```markdown
 # Design Choices & Thought Process (One Page)
 
+![img.png](img.png)
+![img_1.png](img_1.png)
 ## Goals
 - Deliver a clean, fast **data explorer** for the browser with minimal friction (no backend).
 - Keep the UI compact and scalable to multiple tables and formats.
@@ -45,5 +47,5 @@
 - Removable/restorable filters for a cleaner UI
 - Include/exclude CSVs (tables) in search scope
 - Multi-file support and multiple types: `csv`, `tsv`, `psv`, `json`, `ndjson`, `xlsx`
-- Hosted demo (add URL)
+- Hosted ("https://zakriafacedetection.web.app")
 - All core requirements implemented; some optimization opportunities remain

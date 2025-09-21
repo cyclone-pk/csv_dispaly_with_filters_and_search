@@ -39,8 +39,12 @@ class MiniRangeSlider extends StatelessWidget {
   final double maxWidth;
   final double hPadding;
 
-  String _fmt(num v) =>
-      v % 1 == 0 ? v.toStringAsFixed(0) : v.toStringAsFixed(1);
+  String _fmt(num v) {
+    if (v >= 1e9) return '${(v / 1e9).toStringAsFixed(1)}B';
+    if (v >= 1e6) return '${(v / 1e6).toStringAsFixed(1)}M';
+    if (v >= 1e3) return '${(v / 1e3).toStringAsFixed(1)}k';
+    return v % 1 == 0 ? v.toStringAsFixed(0) : v.toStringAsFixed(1);
+  }
 
   @override
   Widget build(BuildContext context) {
