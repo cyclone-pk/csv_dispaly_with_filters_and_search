@@ -1,0 +1,10 @@
+user_id,username,email,age,city,subscription,signup_date,active
+1,user_001,user1@example.com,53,New York,Basic,2024-10-28,True
+2,user_002,user2@example.com,50,Toronto,Basic,2025-07-25,True
+3,user_003,user3@example.com,21,Toronto,Pro,2025-09-08,True
+4,user_004,user4@example.com,50,Paris,Basic,2025-05-03,False
+5,user_005,user5@example.com,31,Tokyo,Basic,2025-05-18,True
+6,user_006,user6@example.com,38,Berlin,Premium,2025-05-29,True
+7,user_007,user7@example.com,65,Berlin,Pro,2025-07-11,True
+8,user_008,user8@example.com,37,Paris,Basic,2025-07-30,True
+9,user_009,user9@example.com,25,London,Basic,2024-10-09,False

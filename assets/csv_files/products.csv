@@ -1,0 +1,11 @@
+id,name,category,price,brand,rating,in_stock
+1,iPhone 15 Pro,Books,128.1,Nike,3.6,False
+2,Samsung Galaxy S24,Sports,344.8,Apple,3.2,True
+3,Nike Air Max,Home,308.9,Nike,3.9,True
+4,Dell XPS Laptop,Sports,418.27,Sony,3.4,True
+5,Sony WH-1000XM5,Sports,94.95,Dell,3.8,True
+6,Product_6,Clothing,201.62,HP,4.8,False
+7,Product_7,Home,99.3,Nike,3.6,True
+8,Product_8,Home,380.13,Apple,3.2,True
+9,Product_9,Home,218.33,Sony,3.7,True
+10,Product_10,Sports,111.89,Samsung,4.8,False

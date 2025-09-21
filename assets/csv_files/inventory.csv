@@ -1,0 +1,11 @@
+item_id,product_id,warehouse,stock_level,reorder_point,last_restocked,supplier,cost_per_unit
+1,27,Warehouse A,841,50,2025-09-09,Supplier Y,98.42
+2,15,Warehouse A,97,45,2025-08-27,Supplier Y,8.51
+3,6,Warehouse C,143,94,2025-09-03,Supplier X,87.18
+4,47,Warehouse B,879,81,2025-08-23,Supplier X,10.3
+5,14,Warehouse B,434,64,2025-08-24,Supplier Z,193.42
+6,11,Warehouse C,636,18,2025-09-07,Supplier Y,29.85
+7,39,Warehouse A,678,56,2025-09-01,Supplier X,143.0
+8,9,Warehouse A,85,24,2025-08-28,Supplier Z,194.69
+9,26,Warehouse B,587,57,2025-09-16,Supplier Z,166.08
+10,16,Warehouse A,343,91,2025-08-22,Supplier Y,141.37

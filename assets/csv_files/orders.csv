@@ -1,0 +1,16 @@
+order_id,user_id,product_id,quantity,total_amount,order_date,status,payment_method
+1,53,21,4,727.82,2025-09-06,Cancelled,PayPal
+2,37,6,2,858.58,2025-07-24,Delivered,Apple Pay
+3,74,6,1,833.62,2025-09-12,Delivered,PayPal
+4,74,48,4,409.24,2025-07-02,Delivered,PayPal
+5,83,4,2,674.72,2025-06-10,Shipped,Apple Pay
+6,17,30,2,220.88,2025-07-14,Shipped,PayPal
+7,85,11,1,307.28,2025-09-04,Shipped,PayPal
+8,78,30,1,898.41,2025-07-28,Shipped,PayPal
+9,73,31,3,32.74,2025-04-28,Delivered,PayPal
+10,1,24,4,103.8,2025-07-02,Shipped,Apple Pay
+11,51,9,4,223.73,2025-07-28,Pending,PayPal
+12,45,3,3,46.0,2025-04-06,Cancelled,PayPal
+13,77,31,4,197.81,2025-05-16,Delivered,Apple Pay
+14,4,40,4,591.38,2025-06-11,Cancelled,Google Pay
+15,62,37,4,433.0,2025-04-09,Cancelled,Credit Card

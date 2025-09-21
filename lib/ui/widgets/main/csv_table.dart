@@ -1,0 +1,106 @@
+import 'package:flutter/material.dart';
+import 'package:data_table_2/data_table_2.dart';
+import 'package:provider/provider.dart';
+import 'package:take_home_assignment/provider/data_provider.dart';
+import 'package:take_home_assignment/styles/colors.dart';
+import 'package:take_home_assignment/models/table_data_model.dart';
+import 'package:take_home_assignment/ui/widgets/main/table_name_widget.dart';
+
+class CsvTable extends StatelessWidget {
+  final TableModel table;
+  final List<List<String>> rows;
+
+  const CsvTable({super.key, required this.table, required this.rows});
+
+  @override
+  Widget build(BuildContext context) {
+    final dp = context.read<DataProvider>();
+    final sort = context.watch<DataProvider>().getSort(table.id);
+
+    final safeRows = rows.map((r) {
+      final fixed = List<String>.from(r.map((e) => e));
+      if (fixed.length < table.headers.length) {
+        fixed.addAll(List.filled(table.headers.length - fixed.length, ''));
+      } else if (fixed.length > table.headers.length) {
+        fixed.removeRange(table.headers.length, fixed.length);
+      }
+      return fixed;
+    }).toList();
+
+    const double headerH = 30;
+    const double rowH = 30;
+    const double maxH = 250;
+
+    final int rowCount = safeRows.length;
+    final double tableH = (rowCount <= 10)
+        ? headerH +
+              rowH *
+                  (rowCount == 0
+                      ? 1
+                      : rowCount) // show at least header+1 row height
+        : maxH;
+
+    if (safeRows.isEmpty) return const SizedBox.shrink();
+
+    final cols = <DataColumn2>[
+      for (var i = 0; i < table.headers.length; i++)
+        DataColumn2(
+          label: Text(
+            table.headers[i],
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 11,
+            ),
+          ),
+          onSort: (col, asc) => dp.setSort(table.id, col, asc),
+        ),
+    ];
+
+    return Card(
+      elevation: 1,
+      child: Column(
+        children: [
+          TableNameWidget(name: table.displayName.toUpperCase()),
+          Divider(height: 1),
+          SizedBox(
+            height: tableH,
+            child: DataTable2(
+              sortArrowIcon: Icons.arrow_drop_down,
+              sortColumnIndex: sort?.$1,
+              sortAscending: sort?.$2 ?? true,
+              headingRowHeight: headerH,
+              dataRowHeight: rowH,
+              headingRowDecoration: const BoxDecoration(color: AppColors.bg),
+              columns: cols,
+              rows: safeRows
+                  .take(500)
+                  .map(
+                    (r) => DataRow(
+                      cells: r
+                          .map(
+                            (c) => DataCell(
+                              Text(
+                                c,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                  .toList(),
+              columnSpacing: 12,
+              horizontalMargin: 12,
+              minWidth: table.headers.length * 120,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
