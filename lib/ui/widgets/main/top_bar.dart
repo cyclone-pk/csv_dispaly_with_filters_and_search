@@ -42,12 +42,22 @@ class TopBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          IconButton(
-            tooltip: 'Upload CSV',
-            icon: const Icon(Icons.upload_file),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(
+                color: Theme.of(context).colorScheme.outline.withOpacity(0.5),
+              ),
+              foregroundColor: Theme.of(context).colorScheme.onSurface,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
             onPressed: () {
               context.read<DataProvider>().addCsvsFromUpload();
             },
+            icon: const Icon(Icons.upload_file, size: 18),
+            label: const Text('Upload CSV', style: TextStyle(fontSize: 13)),
           ),
           IconButton(
             tooltip: 'Reset',

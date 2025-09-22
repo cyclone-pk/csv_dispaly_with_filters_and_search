@@ -21,7 +21,6 @@
   - **Number** → compact range slider with labeled square thumbs
   - **Boolean/Text** → chip sets (text columns intentionally excluded from filter UI)
   - **Date** → date range picker
-- **Merged filters**: If multiple selected tables share the same header, render a **single** card (union of options, min/max). Updates propagate to all matching tables.
 - **Hide/Restore**: Users can hide specific filter cards to declutter; a “Restore” button brings them back (session-only memory).
 
 ## Sorting
@@ -33,9 +32,8 @@
 - Async recompute ensures UI remains interactive even with multiple filters and larger tables.
 
 ## Supported Formats
-- **Delimited**: `csv`, `tsv`, `psv` (delimiter inferred from extension)
-- **JSON**: array of objects or **NDJSON** lines; nested objects flattened to dotted keys
-- **XLSX**: each sheet becomes its own table (`file.xlsx::SheetName`)
+- csv
+
 
 ## Implemented Feature List (as requested)
 - Global text search across any field
@@ -43,6 +41,5 @@
 - Asc/desc sorting by clicking header labels
 - Removable/restorable filters for a cleaner UI
 - Include/exclude CSVs (tables) in search scope
-- Multi-file support and multiple types: `csv`, `tsv`, `psv`, `json`, `ndjson`, `xlsx`
 - Hosted ("https://zakriafacedetection.web.app")
 - All core requirements implemented; some optimization opportunities remain
