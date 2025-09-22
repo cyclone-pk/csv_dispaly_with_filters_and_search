@@ -6,23 +6,35 @@ import 'package:take_home_assignment/styles/colors.dart';
 import 'package:take_home_assignment/models/table_data_model.dart';
 import 'package:take_home_assignment/ui/widgets/main/table_name_widget.dart';
 
-class CsvTable extends StatelessWidget {
+class CsvTable extends StatefulWidget {
   final TableModel table;
   final List<List<String>> rows;
 
   const CsvTable({super.key, required this.table, required this.rows});
 
   @override
-  Widget build(BuildContext context) {
-    final dp = context.read<DataProvider>();
-    final sort = context.watch<DataProvider>().getSort(table.id);
+  State<CsvTable> createState() => _CsvTableState();
+}
 
-    final safeRows = rows.map((r) {
+class _CsvTableState extends State<CsvTable>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    final dp = context.read<DataProvider>();
+    final sort = context.watch<DataProvider>().getSort(widget.table.id);
+
+    final safeRows = widget.rows.map((r) {
       final fixed = List<String>.from(r.map((e) => e));
-      if (fixed.length < table.headers.length) {
-        fixed.addAll(List.filled(table.headers.length - fixed.length, ''));
-      } else if (fixed.length > table.headers.length) {
-        fixed.removeRange(table.headers.length, fixed.length);
+      if (fixed.length < widget.table.headers.length) {
+        fixed.addAll(
+          List.filled(widget.table.headers.length - fixed.length, ''),
+        );
+      } else if (fixed.length > widget.table.headers.length) {
+        fixed.removeRange(widget.table.headers.length, fixed.length);
       }
       return fixed;
     }).toList();
@@ -43,10 +55,10 @@ class CsvTable extends StatelessWidget {
     if (safeRows.isEmpty) return const SizedBox.shrink();
 
     final cols = <DataColumn2>[
-      for (var i = 0; i < table.headers.length; i++)
+      for (var i = 0; i < widget.table.headers.length; i++)
         DataColumn2(
           label: Text(
-            table.headers[i],
+            widget.table.headers[i],
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               color: Colors.white,
@@ -54,7 +66,7 @@ class CsvTable extends StatelessWidget {
               fontSize: 11,
             ),
           ),
-          onSort: (col, asc) => dp.setSort(table.id, col, asc),
+          onSort: (col, asc) => dp.setSort(widget.table.id, col, asc),
         ),
     ];
 
@@ -62,7 +74,7 @@ class CsvTable extends StatelessWidget {
       elevation: 1,
       child: Column(
         children: [
-          TableNameWidget(name: table.displayName.toUpperCase()),
+          TableNameWidget(name: widget.table.displayName.toUpperCase()),
           Divider(height: 1),
           SizedBox(
             height: tableH,
@@ -96,7 +108,7 @@ class CsvTable extends StatelessWidget {
                   .toList(),
               columnSpacing: 12,
               horizontalMargin: 12,
-              minWidth: table.headers.length * 120,
+              minWidth: widget.table.headers.length * 120,
             ),
           ),
         ],

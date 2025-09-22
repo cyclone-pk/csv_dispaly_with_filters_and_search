@@ -42,20 +42,25 @@ class HomePage extends StatelessWidget {
                       }
                       return Stack(
                         children: [
-                          ListView.separated(
+                          ListView.builder(
                             padding: const EdgeInsets.all(12),
                             itemCount: dp.views.length,
-                            separatorBuilder: (context, i) => SizedBox(
-                              height: dp.views[i].rows.isEmpty ? 0 : 16,
-                            ),
                             itemBuilder: (context, i) {
                               final v = dp.views[i];
-                              if (v.rows.isEmpty) {
+                              if (v.rows.isEmpty)
                                 return const SizedBox.shrink();
-                              }
-                              return CsvTable(table: v.table, rows: v.rows);
+
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: i == dp.views.length - 1 ? 0 : 16,
+                                ),
+                                child: RepaintBoundary(
+                                  child: CsvTable(table: v.table, rows: v.rows),
+                                ),
+                              );
                             },
                           ),
+
                           if (dp.isLoading)
                             const Align(
                               alignment: Alignment.topCenter,
