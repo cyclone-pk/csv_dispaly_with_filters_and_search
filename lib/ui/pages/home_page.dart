@@ -40,6 +40,9 @@ class HomePage extends StatelessWidget {
                           child: Text('No data matches filters.'),
                         );
                       }
+                      double h = dp.views.length > 2
+                          ? 300
+                          : MediaQuery.sizeOf(context).height / 2;
                       return Stack(
                         children: [
                           ListView.builder(
@@ -55,7 +58,11 @@ class HomePage extends StatelessWidget {
                                   bottom: i == dp.views.length - 1 ? 0 : 16,
                                 ),
                                 child: RepaintBoundary(
-                                  child: CsvTable(table: v.table, rows: v.rows),
+                                  child: CsvTable(
+                                    table: v.table,
+                                    rows: v.rows,
+                                    height: h,
+                                  ),
                                 ),
                               );
                             },

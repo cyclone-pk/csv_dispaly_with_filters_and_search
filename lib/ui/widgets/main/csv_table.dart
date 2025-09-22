@@ -7,10 +7,16 @@ import 'package:take_home_assignment/models/table_data_model.dart';
 import 'package:take_home_assignment/ui/widgets/main/table_name_widget.dart';
 
 class CsvTable extends StatefulWidget {
+  final double height;
   final TableModel table;
   final List<List<String>> rows;
 
-  const CsvTable({super.key, required this.table, required this.rows});
+  const CsvTable({
+    super.key,
+    required this.table,
+    required this.rows,
+    required this.height,
+  });
 
   @override
   State<CsvTable> createState() => _CsvTableState();
@@ -41,7 +47,7 @@ class _CsvTableState extends State<CsvTable>
 
     const double headerH = 30;
     const double rowH = 30;
-    const double maxH = 250;
+    double maxH = widget.height;
 
     final int rowCount = safeRows.length;
     final double tableH = (rowCount <= 10)
